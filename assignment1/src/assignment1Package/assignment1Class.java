@@ -21,9 +21,11 @@ public class assignment1Class {
 		System.out.println(": " + scrambleWord(""));
 		
 		System.out.println("\nProblem 2");
-		List<String> wordList = Arrays.asList("TAN", "ABRACADABRA", "WHOA", "APPLE", "EGGS");
+		List<String> wordList = new ArrayList<String>(Arrays.asList("TAN", "ABRACADABRA", "WHOA", "APPLE", "EGGS"));
 		System.out.println("wordList: \t" + wordList);
 		scrambleOrRemove(wordList);
+		System.out.println("wordList: \t" + wordList);
+
 		
 		System.out.println("\nProblem 3");
 		System.out.println("wordList: \t" + wordList);
@@ -68,16 +70,14 @@ public class assignment1Class {
 	}
 	
 	public static void scrambleOrRemove(List<String> wordList) {
-		List<String> newWordList = new ArrayList<String>();
-		
-		for (String word : wordList) {
+		for (int i = 0; i < wordList.size(); i++) {
+			String word = wordList.get(i);
 			String scrambledWord = scrambleWord(word);
 			
-			if (!word.equals(scrambledWord))
-				newWordList.add(scrambledWord);
+			if (word.equals(scrambledWord)) {
+				wordList.remove(i);
+			}
 		}
-		
-		System.out.println("newWordList: \t" + newWordList);
 	}
 	
 	public static int getNumCharacters(List<String> wordList) {
