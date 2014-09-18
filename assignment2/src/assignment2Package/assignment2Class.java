@@ -5,7 +5,10 @@ import java.util.*;
 public class assignment2Class {
 
 	public static void main(String[] args) {
-
+		int[] trail1 = { 100, 150, 105, 120, 90, 80, 50, 75, 75, 70, 80, 90, 100 };
+		int[] trail2 = { 100, 150, 105, 140, 50, 80, 10, 75, 60, 70, 80, 90, 100 };
+		int[] trail3 = { 100, 150, 105, 120, 90, 80, 30, 75, 80, 70, 80, 90, 100 };
+		
 	}
 
 }
@@ -40,7 +43,7 @@ class Trail {
 
 }
 
-class  MyTrailInventory {
+class MyTrailInventory {
 	Trail[] trails;
 	
 	public MyTrailInventory(Trail[] trails) {
@@ -49,7 +52,7 @@ class  MyTrailInventory {
 	
 	public int getMostDifficultTrail() {
 		int index = 0;
-		int lastTrail = trails[trails.length].isDifficult();
+		int lastTrailDifficulty = trails[trails.length].isDifficult();
 		
 		for(int i = 0; i < trails.length; i++) {
 			if (trails.length <= (i+1))
