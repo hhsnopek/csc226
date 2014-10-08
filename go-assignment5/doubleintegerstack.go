@@ -24,10 +24,10 @@ package doubleintegerstack
 // Rather than using GetEven or GetOdds, I could have used a single method
 // that would take Stack, for generic use.
 type Stack interface {
-  Push(int)
-  Pop()
-  Get()
-  GetNums()
+	Push(int)
+	Pop()
+	Get()
+	GetNums()
 }
 
 // Declaration of StackObject struct, using an Integer Slice
@@ -35,8 +35,8 @@ type Stack interface {
 type EvenStack []int
 type OddStack []int
 type StackObject struct {
-  EvenStack []int
-  OddStack []int
+	EvenStack []int
+	OddStack  []int
 }
 
 // Defines Push methods, implementing LIFO
@@ -44,48 +44,48 @@ type StackObject struct {
 // without it, append only works when you append existing data to a slice.
 // ex: append(slice, data)
 func (s *StackObject) Push(item int) {
-  // verifies item is greater than 0
-  if item < 0 {
-    // Prints out error, re-formated to slice specification `%v`
-    return
-  } else if (item % 2) != 0 { // verifies item is even
-    c := s.EvenStack
-    c = append([]int{item}, s.EvenStack...)
-    s.EvenStack = c
-  } else if (item % 2) == 0 { // verifies item is odd
-    c := s.OddStack
-    c = append([]int{item}, s.OddStack...)
-    s.OddStack = c
-  }
+	// verifies item is greater than 0
+	if item < 0 {
+		// Prints out error, re-formated to slice specification `%v`
+		return
+	} else if (item % 2) != 0 { // verifies item is even
+		c := s.EvenStack
+		c = append([]int{item}, s.EvenStack...)
+		s.EvenStack = c
+	} else if (item % 2) == 0 { // verifies item is odd
+		c := s.OddStack
+		c = append([]int{item}, s.OddStack...)
+		s.OddStack = c
+	}
 }
 
 // Defines Pop methods, implementing LIFO
 func (s *StackObject) PopEven() {
-  c := *s // copy slice
-  c.EvenStack = append(c.EvenStack[1:]) // potential memory leak
-  *s = c
+	c := *s                               // copy slice
+	c.EvenStack = append(c.EvenStack[1:]) // potential memory leak
+	*s = c
 }
 
 func (s *StackObject) PopOdd() {
-  c := *s // copy slice
-  c.OddStack = append(c.OddStack[1:]) // potential memory leak
-  *s = c
+	c := *s                             // copy slice
+	c.OddStack = append(c.OddStack[1:]) // potential memory leak
+	*s = c
 }
 
 // Defines Get methods
 func (s StackObject) GetEven() int {
-  return s.EvenStack[0] // returns first item in slice
+	return s.EvenStack[0] // returns first item in slice
 }
 
 func (s StackObject) GetOdd() int {
-  return s.OddStack[0] // returns first item in slice
+	return s.OddStack[0] // returns first item in slice
 }
 
 // Defines GetNum methods
 func (s StackObject) GetNumsEven() int {
-  return len(s.EvenStack) // returns length of slice
+	return len(s.EvenStack) // returns length of slice
 }
 
 func (s StackObject) GetNumsOdd() int {
-  return len(s.OddStack) // returns length of slice
+	return len(s.OddStack) // returns length of slice
 }

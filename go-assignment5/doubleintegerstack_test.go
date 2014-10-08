@@ -1,9 +1,9 @@
 package doubleintegerstack
 
 import (
-  "testing"
-  "math/rand"
-  "github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/assert"
+	"math/rand"
+	"testing"
 )
 
 // Notes:
@@ -15,77 +15,77 @@ import (
 // fn after the test is completed.
 
 func Before() StackObject { // StackObject assignment
-  stackObject := StackObject{ make(EvenStack, 0, 200), make(OddStack, 0, 200) }
-  for num := 0; num <= 150; num++ {
-    stackObject.Push(rand.Intn(1000))
-  }
-  return stackObject
+	stackObject := StackObject{make(EvenStack, 0, 200), make(OddStack, 0, 200)}
+	for num := 0; num <= 150; num++ {
+		stackObject.Push(rand.Intn(1000))
+	}
+	return stackObject
 }
 
 func After(s StackObject) { // clean up
-  s = StackObject{ nil, nil }
+	s = StackObject{nil, nil}
 }
 
 func TestStackObjectCreationSuccess(t *testing.T) {
-  stackObject := Before()
-  defer After(stackObject)
+	stackObject := Before()
+	defer After(stackObject)
 
-  for num := 0; num <= 150; num++ {
-    stackObject.Push(rand.Intn(1000))
-  }
-  if !assert.NotNil(t, stackObject) {
-    t.Fail()
-  }
+	for num := 0; num <= 150; num++ {
+		stackObject.Push(rand.Intn(1000))
+	}
+	if !assert.NotNil(t, stackObject) {
+		t.Fail()
+	}
 }
 
 func TestStackObjectNegativePushFails(t *testing.T) {
-  blankSObj := StackObject{ make(EvenStack, 0, 200), make(OddStack, 0, 200) }
-  stackObject := StackObject{ make(EvenStack, 0, 200), make(OddStack, 0, 200) }
-  defer After(stackObject)
-  defer After(blankSObj)
+	blankSObj := StackObject{make(EvenStack, 0, 200), make(OddStack, 0, 200)}
+	stackObject := StackObject{make(EvenStack, 0, 200), make(OddStack, 0, 200)}
+	defer After(stackObject)
+	defer After(blankSObj)
 
-  stackObject.Push(-1000)
-  assert.Equal(t, stackObject, blankSObj)
+	stackObject.Push(-1000)
+	assert.Equal(t, stackObject, blankSObj)
 }
 
 func TestStackObjectPopEven(t *testing.T) {
-  stackObject := Before()
-  defer After(stackObject)
-  ESLen := len(stackObject.EvenStack)
+	stackObject := Before()
+	defer After(stackObject)
+	ESLen := len(stackObject.EvenStack)
 
-  stackObject.PopEven()
-  assert.Equal(t, len(stackObject.EvenStack), ESLen-1)
+	stackObject.PopEven()
+	assert.Equal(t, len(stackObject.EvenStack), ESLen-1)
 }
 
 func TestStackObjectPopOdd(t *testing.T) {
-  stackObject := Before()
-  defer After(stackObject)
-  OSLen := len(stackObject.OddStack)
+	stackObject := Before()
+	defer After(stackObject)
+	OSLen := len(stackObject.OddStack)
 
-  stackObject.PopOdd()
-  assert.Equal(t, len(stackObject.OddStack), OSLen-1)
+	stackObject.PopOdd()
+	assert.Equal(t, len(stackObject.OddStack), OSLen-1)
 }
 
 func TestStackObjectGetEven(t *testing.T) {
-  stackObject := Before()
-  defer After(stackObject)
-  assert.Equal(t, stackObject.GetEven(), stackObject.EvenStack[0])
+	stackObject := Before()
+	defer After(stackObject)
+	assert.Equal(t, stackObject.GetEven(), stackObject.EvenStack[0])
 }
 
 func TestStackObjectGetOdd(t *testing.T) {
-  stackObject := Before()
-  defer After(stackObject)
-  assert.Equal(t, stackObject.GetOdd(), stackObject.OddStack[0])
+	stackObject := Before()
+	defer After(stackObject)
+	assert.Equal(t, stackObject.GetOdd(), stackObject.OddStack[0])
 }
 
 func TestStackObjectGetNumsEven(t *testing.T) {
-  stackObject := Before()
-  defer After(stackObject)
-  assert.Equal(t, stackObject.GetNumsEven(), len(stackObject.EvenStack))
+	stackObject := Before()
+	defer After(stackObject)
+	assert.Equal(t, stackObject.GetNumsEven(), len(stackObject.EvenStack))
 }
 
 func TestStackObjectGetNumsOdd(t *testing.T) {
-  stackObject := Before()
-  defer After(stackObject)
-  assert.Equal(t, stackObject.GetNumsOdd(), len(stackObject.OddStack))
+	stackObject := Before()
+	defer After(stackObject)
+	assert.Equal(t, stackObject.GetNumsOdd(), len(stackObject.OddStack))
 }
