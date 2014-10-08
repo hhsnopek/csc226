@@ -23,7 +23,7 @@ package doubleintegerstack
 // This isn't nessecary considering I did not use Stack within a method
 // Rather than using GetEven or GetOdds, I could have used a single method
 // that would take Stack, for generic use.
-type Stack interface {
+type Stacker interface {
 	Push(int)
 	Pop()
 	Get()
@@ -73,19 +73,21 @@ func (s *StackObject) PopOdd() {
 }
 
 // Defines Get methods
-func (s StackObject) GetEven() int {
+// Within Go programs it's convention with getters to not have `Get` as part of
+// the method. see: http://golang.org/doc/effective_go.html#Getters
+func (s StackObject) Even() int {
 	return s.EvenStack[0] // returns first item in slice
 }
 
-func (s StackObject) GetOdd() int {
+func (s StackObject) Odd() int {
 	return s.OddStack[0] // returns first item in slice
 }
 
 // Defines GetNum methods
-func (s StackObject) GetNumsEven() int {
+func (s StackObject) NumsEven() int {
 	return len(s.EvenStack) // returns length of slice
 }
 
-func (s StackObject) GetNumsOdd() int {
+func (s StackObject) NumsOdd() int {
 	return len(s.OddStack) // returns length of slice
 }

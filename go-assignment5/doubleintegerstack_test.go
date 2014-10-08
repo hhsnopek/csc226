@@ -69,23 +69,23 @@ func TestStackObjectPopOdd(t *testing.T) {
 func TestStackObjectGetEven(t *testing.T) {
 	stackObject := Before()
 	defer After(stackObject)
-	assert.Equal(t, stackObject.GetEven(), stackObject.EvenStack[0])
+	assert.Equal(t, stackObject.Even(), stackObject.EvenStack[0])
 }
 
 func TestStackObjectGetOdd(t *testing.T) {
 	stackObject := Before()
 	defer After(stackObject)
-	assert.Equal(t, stackObject.GetOdd(), stackObject.OddStack[0])
+	assert.Equal(t, stackObject.Odd(), stackObject.OddStack[0])
 }
 
 func TestStackObjectGetNumsEven(t *testing.T) {
 	stackObject := Before()
 	defer After(stackObject)
-	assert.Equal(t, stackObject.GetNumsEven(), len(stackObject.EvenStack))
+	assert.Equal(t, stackObject.NumsEven(), len(stackObject.EvenStack))
 }
 
 func TestStackObjectGetNumsOdd(t *testing.T) {
 	stackObject := Before()
 	defer After(stackObject)
-	assert.Equal(t, stackObject.GetNumsOdd(), len(stackObject.OddStack))
+	assert.Equal(t, stackObject.NumsOdd(), len(stackObject.OddStack))
 }
