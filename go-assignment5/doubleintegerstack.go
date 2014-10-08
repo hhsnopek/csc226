@@ -48,11 +48,11 @@ func (s *StackObject) Push(item int) {
   if item < 0 {
     // Prints out error, re-formated to slice specification `%v`
     return
-  } else if num := item%2; num != 0 { // verifies item is even
+  } else if (item % 2) != 0 { // verifies item is even
     c := s.EvenStack
     c = append([]int{item}, s.EvenStack...)
     s.EvenStack = c
-  } else if num := item%2; num == 0 { // verifies item is odd
+  } else if (item % 2) == 0 { // verifies item is odd
     c := s.OddStack
     c = append([]int{item}, s.OddStack...)
     s.OddStack = c
