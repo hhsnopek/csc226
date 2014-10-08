@@ -43,7 +43,7 @@ type StackObject struct {
 // append usage below is interesting, as this only works with the `...`
 // without it, append only works when you append existing data to a slice.
 // ex: append(slice, data)
-func (s *StackObject) Push(item int) { // EvenStack type only
+func (s *StackObject) Push(item int) {
   // verifies item is greater than 0
   if item < 0 {
     // Prints out error, re-formated to slice specification `%v`
