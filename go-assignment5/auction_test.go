@@ -62,18 +62,3 @@ func TestAuctionHistory(t *testing.T) {
   defer history.History()
   passing(err, "Should Print Auction History")
 }
-
-func main() {
-  history := new(AuctionHistory)
-  john := Bidder{"John", 1, 6, nil}
-  henry := Bidder{"Henry", 7, 10, nil}
-  mike := Bidder{"Mike", 20, 25, nil}
-  history.Bid(john)
-  john.bid = 5
-  history.Bid(john)
-  history.Bid(henry)
-  history.Bid(mike)
-  fmt.Println(history.head.link)
-  fmt.Println(history.head.link.link)
-  history.History()
-}
