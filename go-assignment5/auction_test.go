@@ -59,7 +59,7 @@ func TestAuctionHistory(t *testing.T) {
   history.Bid(Bidder{"John", 5, 10, nil})
   history.Bid(Bidder{"John", 6, 10, nil})
   history.Bid(Bidder{"Henry", 11, 15, nil})
-  history.History()
+  defer history.History()
   passing(err, "Should Print Auction History")
 }
 
