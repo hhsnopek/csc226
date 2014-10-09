@@ -1,4 +1,4 @@
-package doubleintegerstack
+package assignment5
 
 import (
 	"github.com/stretchr/testify/assert"

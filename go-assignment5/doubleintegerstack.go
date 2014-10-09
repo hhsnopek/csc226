@@ -1,4 +1,4 @@
-package doubleintegerstack
+package assignment5
 
 // Notes:
 // After thinking a lot of how to implement this, I first came to the conclusion
