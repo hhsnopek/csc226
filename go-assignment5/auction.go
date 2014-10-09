@@ -40,17 +40,16 @@ func (AH *AuctionHistory) Push(newBid Bidder) {
 // }
 
 func (AH *AuctionHistory) Bid(newBid Bidder) {
-  bidder := newBid
   if AH.size == 0 {
     AH.Push(newBid)
     return
   }
-  if bidder.bid < AH.head.bid {
+  if newBid.bid < AH.head.bid {
     return
-  } else if bidder.bid > AH.head.bid && bidder.bid < AH.head.maxBid {
-    AH.Push(newBid)
+  } else if newBid.bid > AH.head.bid && newBid.bid < AH.head.maxBid {
+    AH.Push(Bidder{AH.head.name, AH.head.maxBid, AH.head.maxBid, AH.head.link})
     return
-  } else if bidder.bid > AH.head.maxBid {
+  } else if newBid.bid > AH.head.maxBid {
     AH.Push(newBid)
     return
   }
@@ -62,19 +61,4 @@ func (AH AuctionHistory) History() {
     fmt.Printf("%v \t %v \n", AH.head.name, AH.head.bid)
     AH.head = AH.head.link
   }
-}
-
-func main() {
-  history := new(AuctionHistory)
-  john := Bidder{"John", 1, 6, nil}
-  henry := Bidder{"Henry", 7, 10, nil}
-  mike := Bidder{"Mike", 20, 25, nil}
-  history.Bid(john)
-  john.bid = 5
-  history.Bid(john)
-  history.Bid(henry)
-  history.Bid(mike)
-  fmt.Println(history.head.link)
-  fmt.Println(history.head.link.link)
-  history.History()
 }
